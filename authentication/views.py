@@ -23,23 +23,23 @@ def signup(request):
         pass2 = request.POST['pass2']
         
         if User.objects.filter(username=username):
-            messages.error(request, "Username already exist! Please try some other username.")
+            messages.success(request, "Username already exist! Please try some other username.")
             return redirect('signup')
         
         if User.objects.filter(email=email).exists():
-            messages.error(request, "Email Already Registered!!")
+            messages.success(request, "Email Already Registered!!")
             return redirect('signup')
         
         if len(username)>20:
-            messages.error(request, "Username must be under 20 charcters!!")
+            messages.success(request, "Username must be under 20 charcters!!")
             return redirect('signup')
         
         if pass1 != pass2:
-            messages.error(request, "Passwords didn't matched!!")
+            messages.success(request, "Passwords didn't matched!!")
             return redirect('signup')
         
         if not username.isalnum():
-            messages.error(request, "Username must be Alpha-Numeric!!")
+            messages.success(request, "Username must be Alpha-Numeric!!")
             return redirect('signup')
         
         myuser = User.objects.create_user(username, email, pass1)
@@ -47,7 +47,7 @@ def signup(request):
         # myuser.last_name = lname
         # # myuser.is_active = False
         myuser.save()
-        messages.success(request, "Your Account has been created succesfully!! Please check your email to confirm your email address in order to activate your account.")
+        messages.success(request, "Your Account has been created succesfully!! Log in to use our services.")
         
         # Welcome Email
         # subject = "Welcome to GFG- Django Login!!"
@@ -106,15 +106,14 @@ def signin(request):
         print(username)
         print(pass1)
         user = authenticate(username=username, password=pass1)
-        
         if user is not None:
             login(request, user)
-            fname = user.first_name
+            fname = user.username
             messages.success(request, "Logged In Sucessfully!!")
             return render(request, "authentication/index.html",{"fname":fname})
         else:
-            messages.error(request, "Bad Credentials!!")
-            return redirect('home')
+            messages.success(request, "Bad Credentials!!")
+            return redirect('signin')
     
     return render(request, "authentication/signin.html")
 
