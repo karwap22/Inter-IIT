@@ -6,7 +6,7 @@
 <head>{% load static %}</head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="icon" type="image/png" href="https://colorlib.com/etc/lf/Login_v9/images/icons/favicon.ico">
 
 <link rel="stylesheet" type="text/css" href=" {% static 'Login_V9_files/bootstrap.min.css' %}">
@@ -49,10 +49,12 @@ Sign Up
 </span>
 <div class="wrap-input100 validate-input m-b-20 alert-validate" data-validate="Enter username">
 <input class="input100" type="text" name="username" id="username" placeholder="Username">
+<button class="input100" onclick="voice('username')">Record</button>
 <span class="focus-input100"></span>
 <span class="btn-hide-validate"></span></div>
 <div class="wrap-input100 validate-input m-b-20 alert-validate" data-validate="Enter email">
 <input class="input100" type="email" name="email" id="email" placeholder="Email">
+<button class="input100" onclick="voice('email')">Record</button>
 <span class="focus-input100"></span>
 <span class="btn-hide-validate"></span></div>
 <div class="wrap-input100 validate-input m-b-25" data-validate="Enter password">
@@ -113,6 +115,19 @@ Sign In
 	  gtag('config', 'UA-23581568-13');
 	</script>
 <script defer="defer" src="Login_0V9_files/vaafb692b2aea4879b33c060e79fe94621666317369993.js" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon="{&quot;rayId&quot;:&quot;78f1d555d9c61be9&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2022.11.3&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+<script>
+    function voice(idname){
 
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = "hi-IN";
+        recognition.onresult = function(event){
+            console.log(event);
+            document.getElementById(idname).value = 
+            event.results[0][0].transcript;
+        }
+        recognition.start()
+
+    }
+</script>
 
 </body></html>
