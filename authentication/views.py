@@ -13,7 +13,14 @@ from . tokens import generate_token
 
 # Create your views here.
 def home(request):
+    if request.method == "POST":
+        fileName = request.FILES["file"]
+        print(fileName)
+        return render(request,"")
     return render(request, "authentication/index.html")
+
+def contract_upload(request):
+    return render(request,"authentication/contract_upload.html")
 
 def signup(request):
     if request.method == "POST":
@@ -122,3 +129,6 @@ def signout(request):
     logout(request)
     messages.success(request, "Logged Out Successfully!!")
     return redirect('home')
+
+def formContract(request):
+    return render(request,"authentication/form1.html")

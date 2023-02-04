@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}  
+  <meta charset="UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="{% static 'style_contract_creation.css' %}">
+</head>
+<body>
+<div class="form_wrapper" id="form1">
+  <div class="form_container">
+    <div class="title_container">
+      <h2>Details Form</h2>
+    </div>
+    <div class="row clearfix">
+      <div class="">
+        <form action="form1.html" method="post">
+        <p> Type of Owner Ship</p>
+        <div class="input_field radio_option">
+                <input onclick="hide_Aadhar()" type="radio" name="radiogroup1" id="rd1">
+                <label for="rd1">Individual</label>
+                <input type="radio" onclick="hide_gstin()" name="radiogroup1" id="rd2">
+                <label for="rd2">Business</label>
+                <input type="radio" onclick="hide_iex()" name="radiogroup1" id="rd3">
+                <label for="rd3">International</label>
+         </div>
+         <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <input id="aadhar"  type="text" name="Aadhar" placeholder="Aadhar Card Number"  />
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <input id="gstin" type="text" name="GSTIN" placeholder="GSTIN"  />
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <input id="iex" type="text" name="IEX" placeholder="IEX"  />
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <input type="text" name="category" placeholder="Category Type" required />
+          </div>
+         <a onclick="add_form2()" href="#form2" id="form1_submit">Submit</a> 
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div id="form2" class="form_wrapper">
+    <div class="form_container">
+    <div class="title_container">
+        <h2>Purpose Form</h2>
+      </div>
+      <div class="row clearfix">
+        <div class="">
+          
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                  <input type="text" name="purpose" placeholder="Purpose" required />
+            </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+              <input type="text" name="acceptance" placeholder="Acceptance Voice" required />
+              </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                  <input type="text" name="Start Date" placeholder="Start Date" required />
+              </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                  <input type="text" name="Start Date" placeholder="End Date" required />
+              </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+              <input type="text" name="Amount" placeholder="Amount" required />
+            </div>
+            <input class="button" type="submit" value="Generate" />
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+<script>
+    function hide_Aadhar(){
+            document.getElementById("gstin").style.visibility="hidden";
+            document.getElementById("iex").style.visibility="hidden";
+            document.getElementById("aadhar").style.visibility="visible";
+    }
+    function hide_gstin(){
+            document.getElementById("gstin").style.visibility="visible";
+            document.getElementById("iex").style.visibility="hidden";
+            document.getElementById("aadhar").style.visibility="hidden";
+    }
+    function hide_iex(){
+            document.getElementById("gstin").style.visibility="hidden";
+            document.getElementById("iex").style.visibility="visible";
+            document.getElementById("aadhar").style.visibility="hidden";
+    }
+    function add_form2()
+    {
+        document.getElementById("form2").style.visibility="visible";
+        document.getElementById("form1").style.visibility="hidden";
+        
+        
+        
+    }
+</script>
+</body>
+</html>
