@@ -10,6 +10,9 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes, force_str
 from django.contrib.auth import authenticate, login, logout
 from . tokens import generate_token
+import gradcap_final
+import txt_to_pdf
+
 
 # Create your views here.
 def home(request):
@@ -21,6 +24,14 @@ def home(request):
 
 def contract_upload(request):
     return render(request,"authentication/contract_upload.html")
+
+def dashboard(request):
+    return render(request,'authentication/dashboard.html')
+
+
+def pricing(request):
+    return render(request,"authentication/pricing.html")
+
 
 def signup(request):
     if request.method == "POST":
@@ -88,23 +99,6 @@ def signup(request):
     return render(request, "authentication/signup.html")
 
 
-def activate(request,uidb64,token):
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        myuser = User.objects.get(pk=uid)
-    except (TypeError,ValueError,OverflowError,User.DoesNotExist):
-        myuser = None
-
-    if myuser is not None and generate_token.check_token(myuser,token):
-        myuser.is_active = True
-        # user.profile.signup_confirmation = True
-        myuser.save()
-        login(request,myuser)
-        messages.success(request, "Your Account has been activated!!")
-        return redirect('signin')
-    else:
-        return render(request,'activation_failed.html')
-
 
 def signin(request):
     if request.method == 'POST':
@@ -117,10 +111,11 @@ def signin(request):
             login(request, user)
             fname = user.username
             messages.success(request, "Logged In Sucessfully!!")
-            return render(request, "authentication/index.html",{"fname":fname})
+            return redirect("dashboard")
         else:
             messages.success(request, "Bad Credentials!!")
-            return redirect('signin')
+            return render(request, "authentication/signin.html")
+    
     
     return render(request, "authentication/signin.html")
 
@@ -131,4 +126,29 @@ def signout(request):
     return redirect('home')
 
 def formContract(request):
+    if request.method == "POST":
+        name = request.POST["name"]
+        parents_name = request.POST["parents_name"]
+        aadhar_no = request.POST["Aadhar"]
+        gstin = request.POST["GSTIN"]
+        iex = request.POST["IEX"]
+        category = request.POST["category"]
+        purpose = request.POST["purpose"]
+        acceptance = request.POST["acceptance"]
+        StartDate = request.POST["StartDate"]
+        EndDate = request.POST["EndDate"]
+        Amount = request.POST["Amount"]
+        location = request.POST["location"]
+        
+        if(aadhar_no!="" and gstin=="" and iex==""):
+            asa = txt_to_pdf.createPdf(gradcap_final.org(acceptance),gradcap_final.name(name),gradcap_final.name(parents_name),22,purpose,gradcap_final.date(StartDate),gradcap_final.date(EndDate),gradcap_final.location(location),gradcap_final.name(acceptance))
+        if(aadhar_no=="" and gstin!="" and iex==""):
+            asa = txt_to_pdf.createPdf(gradcap_final.org(acceptance),gradcap_final.name(name),gradcap_final.name(parents_name),22,purpose,gradcap_final.date(StartDate),gradcap_final.date(EndDate),gradcap_final.location(location),gradcap_final.name(acceptance))
+        if(aadhar_no=="" and gstin=="" and iex!=""):
+            asa = txt_to_pdf.createPdf(gradcap_final.org(acceptance),gradcap_final.name(name),gradcap_final.name(parents_name),22,purpose,gradcap_final.date(StartDate),gradcap_final.date(EndDate),gradcap_final.location(location),gradcap_final.name(acceptance))
+        
+        if(asa):
+            return redirect('dashboard')
+        else:
+            return redirect('home')
     return render(request,"authentication/form1.html")

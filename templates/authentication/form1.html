@@ -18,7 +18,14 @@
     </div>
     <div class="row clearfix">
       <div class="">
-        <form action="form1.html" method="post">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <input type="text" name="name" placeholder="Enter Name" required />
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <input type="text" name="parents_name" placeholder="Enter Parents Name" required />
+          </div>
         <p> Type of Owner Ship</p>
         <div class="input_field radio_option">
                 <input onclick="hide_Aadhar()" type="radio" name="radiogroup1" id="rd1">
@@ -61,13 +68,16 @@
               <input type="text" name="acceptance" placeholder="Acceptance Voice" required />
               </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-                  <input type="text" name="Start Date" placeholder="Start Date" required />
+                  <input type="text" name="StartDate" placeholder="Start Date" required />
               </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-                  <input type="text" name="Start Date" placeholder="End Date" required />
+                  <input type="text" name="EndDate" placeholder="End Date" required />
               </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
               <input type="text" name="Amount" placeholder="Amount" required />
+            </div>
+            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+              <input type="text" name="location" placeholder="Enter Location of work" required />
             </div>
             <input class="button" type="submit" value="Generate" />
           </form>

@@ -5,10 +5,13 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('signup', views.signup, name='signup'),
-    path('activate/<uidb64>/<token>', views.activate, name='activate'),
     path('signin', views.signin, name='signin'),
     path('signout', views.signout, name='signout'),
     path('formContract', views.formContract, name='formContract'),
     path('uploadContract', views.contract_upload, name='formContract'),
+    path('pricing', views.pricing, name='pricing'),
+    path('my_pdf.pdf', views.pricing, name='my_pdf.pdf'),
+    path('dashboard', views.dashboard, name='dashboard'),
+
     
 ]
