@@ -341,7 +341,7 @@ h6 {
 .navbar-mobile .dropdown ul a:hover,
 .navbar-mobile .dropdown ul .active:hover,
 .navbar-mobile .dropdown ul li:hover>a {
-  color: #bd59d4;
+  color: #101010;
 }
 
 .navbar-mobile .dropdown>.dropdown-active {
@@ -868,7 +868,7 @@ section {
 }
 
 .features .icon-box h3 a:hover {
-  color: #bd59d4;
+  color: #101010;
 }
 
 .features .icon-box:hover {
@@ -952,11 +952,11 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #bd59d4;
+  border: 1px solid #101010;
 }
 
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #bd59d4;
+  background-color: #101010;
 }
 
 @media (max-width: 767px) {
@@ -1011,7 +1011,7 @@ section {
 .portfolio #portfolio-flters li:hover,
 .portfolio #portfolio-flters li.filter-active {
   color: #fff;
-  background: #bd59d4;
+  background: #101010;
 }
 
 .portfolio #portfolio-flters li:last-child {
@@ -1088,7 +1088,7 @@ section {
 }
 
 .portfolio .portfolio-wrap .portfolio-links a:hover {
-  color: #bd59d4;
+  color: #101010;
 }
 
 .portfolio .portfolio-wrap:hover::before {
@@ -1124,11 +1124,11 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #bd59d4;
+  border: 1px solid #101010;
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #bd59d4;
+  background-color: #101010;
 }
 
 .portfolio-details .portfolio-info {
@@ -1213,7 +1213,7 @@ section {
 }
 
 .team .member .social a:hover {
-  color: #bd59d4;
+  color: #101010;
 }
 
 .team .member .social i {
@@ -1274,7 +1274,7 @@ section {
 
 .pricing .box h4 {
   font-size: 42px;
-  color: #bd59d4;
+  color: #101010;
   font-weight: 500;
   font-family: "Open Sans", sans-serif;
   margin-bottom: 20px;
@@ -1306,7 +1306,7 @@ section {
 }
 
 .pricing .box ul i {
-  color: #bd59d4;
+  color: #101010;
   font-size: 18px;
   padding-right: 4px;
 }
@@ -1325,8 +1325,8 @@ section {
   display: inline-block;
   padding: 10px 40px 12px 40px;
   border-radius: 50px;
-  border: 2px solid #bd59d4;
-  color: #bd59d4;
+  border: 2px solid #101010;
+  color: #101010;
   font-size: 14px;
   font-weight: 400;
   font-family: "Raleway", sans-serif;
@@ -1335,22 +1335,22 @@ section {
 }
 
 .pricing .box .btn-buy:hover {
-  background: #bd59d4;
+  background: #101010;
   color: #fff;
 }
 
 .pricing .recommended {
-  border-color: #bd59d4;
+  border-color: #101010;
 }
 
 .pricing .recommended .btn-buy {
-  background: #bd59d4;
+  background: #101010;
   color: #fff;
 }
 
 .pricing .recommended .btn-buy:hover {
-  background: #bd59d4;
-  border-color: #bd59d4;
+  background: #101010;
+  border-color: #101010;
 }
 
 /*--------------------------------------------------------------

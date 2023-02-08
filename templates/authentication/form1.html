@@ -3,6 +3,20 @@
 <head>
   {% load static %}  
   <meta charset="UTF-8">
+  <style>
+    .btn {
+      font-family: SourceSansPro-Bold;
+      font-size: 16px;
+      color: #101010;
+      line-height: 1.2;
+      display: block;
+      width: 100%;
+      height: 32px;
+      background: transparent;
+      padding: 0 20px 0 23px;
+      
+    }
+  </style>
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,12 +40,18 @@
         <form action="" method="post">
           {% csrf_token %}
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-            <input type="text" name="name" placeholder="Enter Name" required />
+            <input type="text" name="name" id="name" placeholder="Enter Name" required>
+            <button class="btn" onclick="voice('name')" type="button">Record</button>  
+          
+        </div>
+        
+
+        <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <input type="text" name="parents_name" id="parents_name" placeholder="Enter Parents Name"  required  />
+            <button class="btn" onclick="voice('parents_name')" type="button">Record</button>  
           </div>
-          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-            <input type="text" name="parents_name" placeholder="Enter Parents Name" required />
-          </div>
-        <p> Type of Owner Ship</p>
+        
+          <p> Type of Owner Ship</p>
         <div class="input_field radio_option">
                 <input onclick="hide_Aadhar()" type="radio" name="radiogroup1" id="rd1">
                 <label for="rd1">Individual</label>
@@ -42,15 +62,19 @@
          </div>
          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
             <input id="aadhar"  type="text" name="Aadhar" placeholder="Aadhar Card Number"  />
+            <button class="btn" id="aadhar_btn" onclick="voice('aadhar')" type="button">Record</button>  
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
             <input id="gstin" type="text" name="GSTIN" placeholder="GSTIN"  />
+            <button class="btn" id="gstin_btn" onclick="voice('gstin')" type="button">Record</button>  
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
             <input id="iex" type="text" name="IEX" placeholder="IEX"  />
+            <button class="btn" id="iex_btn" onclick="voice('iex')" type="button">Record</button>  
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-            <input type="text" name="category" placeholder="Category Type" required />
+            <input type="text" name="category" id="category" placeholder="Category Type"  required  />
+            <button class="btn" onclick="voice('category')" type="button">Record</button>  
           </div>
          <a onclick="add_form2()" href="#form2" id="form1_submit">Submit</a> 
         
@@ -67,22 +91,28 @@
         <div class="">
           
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-                  <input type="text" name="purpose" placeholder="Purpose" required />
+                  <input type="text" name="purpose" id="purpose" placeholder="Purpose"  required  />
+                  <button class="btn" onclick="voice('purpose')" type="button">Record</button>  
             </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-              <input type="text" name="acceptance" placeholder="Acceptance Voice" required />
+              <input type="text" name="acceptance" id="acceptance" placeholder="Acceptance Voice"  required  />
+              <button class="btn" onclick="voice('acceptance')" type="button">Record</button>  
               </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-                  <input type="text" name="StartDate" placeholder="Start Date" required />
+                  <input type="text" name="StartDate" id="StartDate" placeholder="Start Date"  required  />
+                  <button class="btn" onclick="voice('StartDate')" type="button">Record</button>  
               </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-                  <input type="text" name="EndDate" placeholder="End Date" required />
+                  <input type="text" name="EndDate" id="EndDate" placeholder="End Date"   required />
+                  <button class="btn" onclick="voice('EndDate')" type="button">Record</button>  
               </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-              <input type="text" name="Amount" placeholder="Amount" required />
+              <input type="text" name="Amount" id="Amount" placeholder="Amount"  required  />
+              <button class="btn" onclick="voice('Amount')" type="button">Record</button>  
             </div>
             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-              <input type="text" name="location" placeholder="Enter Location of work" required />
+              <input type="text" name="location" id="location" placeholder="Enter Location of work"  required  />
+              <button class="btn" onclick="voice('location')" type="button">Record</button>  
             </div>
             <input class="button" type="submit" value="Generate" />
           </form>
@@ -91,20 +121,41 @@
     </div>
 </div>
 <script>
+    function voice(idname){
+
+      var recognition = new webkitSpeechRecognition();
+      recognition.lang = "hi-IN";
+      recognition.onresult = function(event){
+          console.log(event);
+          document.getElementById(idname).value = 
+          event.results[0][0].transcript;
+      }
+      recognition.start()
+  }
+
     function hide_Aadhar(){
             document.getElementById("gstin").style.visibility="hidden";
             document.getElementById("iex").style.visibility="hidden";
             document.getElementById("aadhar").style.visibility="visible";
+            document.getElementById("gstin_btn").style.visibility="hidden";
+            document.getElementById("iex_btn").style.visibility="hidden";
+            document.getElementById("aadhar_btn").style.visibility="visible";
     }
     function hide_gstin(){
             document.getElementById("gstin").style.visibility="visible";
             document.getElementById("iex").style.visibility="hidden";
             document.getElementById("aadhar").style.visibility="hidden";
+            document.getElementById("gstin_btn").style.visibility="visible";
+            document.getElementById("iex_btn").style.visibility="hidden";
+            document.getElementById("aadhar_btn").style.visibility="hidden";
     }
     function hide_iex(){
             document.getElementById("gstin").style.visibility="hidden";
             document.getElementById("iex").style.visibility="visible";
             document.getElementById("aadhar").style.visibility="hidden";
+            document.getElementById("gstin_btn").style.visibility="hidden";
+            document.getElementById("iex_btn").style.visibility="visible";
+            document.getElementById("aadhar_btn").style.visibility="hidden";
     }
     function add_form2()
     {
@@ -114,6 +165,8 @@
         
         
     }
+
+
 </script>
 </body>
 </html>

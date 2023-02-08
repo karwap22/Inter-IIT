@@ -51,11 +51,13 @@ Sign In
 <div class="wrap-input100 validate-input m-b-20 alert-validate" data-validate="Enter username or email" style="border: solid;">
 <input class="input100" type="text" id="username" name="username" placeholder="username or email">
 <span class="focus-input100"></span>
-<span class="btn-hide-validate"></span></div>
+<span class="btn-hide-validate"></span>
+<button class="input100" onclick="voice('username')">Record</button></div>
+
 <div class="wrap-input100 validate-input m-b-25" data-validate="Enter password" style="border: solid;">
 <input class="input100" type="password" name="pass1" id="pass1" placeholder="password">
 <span class="focus-input100"></span>
-</div>
+<button class="input100" onclick="voice('pass1')">Record</button></div>
 <div class="container-login100-form-btn">
 <button class="login100-form-btn" type="submit">
 Sign In
@@ -105,6 +107,20 @@ Sign Up
 	  gtag('config', 'UA-23581568-13');
 	</script>
 <script defer="defer" src="{% static 'Login_V9_files/vaafb692b2aea4879b33c060e79fe94621666317369993.js' %}" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon="{&quot;rayId&quot;:&quot;78f1d555d9c61be9&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2022.11.3&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+<script>
+    function voice(idname){
+
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = "hi-IN";
+        recognition.onresult = function(event){
+            console.log(event);
+            document.getElementById(idname).value = 
+            event.results[0][0].transcript;
+        }
+        recognition.start()
+
+    }
+</script>
 
 
 </body></html>
